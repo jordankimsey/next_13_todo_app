@@ -6,7 +6,10 @@ export interface todoType {
 
 //? Get API Calls
 export async function getAllTodos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`, {
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'cors',
+  });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -15,25 +18,37 @@ export async function getAllTodos() {
 }
 
 export async function getActiveTodos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-todos`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-todos`, {
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'cors',
+  });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
-  const todos: todoType[] = await res.json()
-  return todos
+  const todos: todoType[] = await res.json();
+  return todos;
 }
 
 export async function getCompletedTodos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/completed-todos`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/completed-todos`,
+    {
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+    }
+  );
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
- const todos: todoType[] = await res.json();
- return todos;
+  const todos: todoType[] = await res.json();
+  return todos;
 }
 
 export async function getActiveCount() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-count`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-count`, {
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'cors',
+  });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -99,9 +114,6 @@ export async function clearCompleted() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       mode: 'cors',
-      // body: JSON.stringify({
-      //   productId: productId,
-      // }),
     }
   );
 
