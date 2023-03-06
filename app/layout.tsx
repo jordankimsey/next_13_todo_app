@@ -1,18 +1,23 @@
-import './globals.css'
+import './globals.css';
+import { TodoProvider } from '@/components/TodoContext';
+import { Provider } from '@/components/Provider';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-      <body>{children}</body>
+    <html>
+      <body className='w-full min-h-screen bg-gray-100 dark:bg-gray-900 relative'>
+        <Provider>
+          <TodoProvider>{children}</TodoProvider>
+        </Provider>
+        <div className='absolute bottom-0 w-full'>
+          <Footer />
+        </div>
+      </body>
     </html>
-  )
+  );
 }
