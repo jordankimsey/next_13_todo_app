@@ -7,11 +7,7 @@ export interface todoType {
 //? Get API Calls
 export async function getAllTodos() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`, {
-      headers: { 'Content-Type': 'application/json' },
-     
-    });
-console.log(res)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`);
     const todos: todoType[] = await res.json();
     console.log(todos)
     return todos;
@@ -22,10 +18,7 @@ console.log(res)
 
 export async function getActiveTodos() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-todos`, {
-      headers: { 'Content-Type': 'application/json' },
-      // mode: 'no-cors',
-    });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-todos`);
     const todos: todoType[] = await res.json();
     return todos;
   } catch (err) {
@@ -35,12 +28,7 @@ export async function getActiveTodos() {
 
 export async function getCompletedTodos() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/completed-todos`,
-    {
-      headers: { 'Content-Type': 'application/json' },
-      // mode: 'cors',
-    }
-  );
+    `${process.env.NEXT_PUBLIC_API_URL}/completed-todos`);
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -49,10 +37,7 @@ export async function getCompletedTodos() {
 }
 
 export async function getActiveCount() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-count`, {
-    headers: { 'Content-Type': 'application/json' },
-    // mode: 'cors',
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-count`);
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
