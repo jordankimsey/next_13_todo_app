@@ -6,9 +6,9 @@ export interface todoType {
 
 //? Get API Calls
 export async function getAllTodos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`, {
+  const res = await fetch(`${process.env.API_URL}/`, {
     headers: { 'Content-Type': 'application/json' },
-    mode: 'no-cors',
+    // mode: 'no-cors',
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -20,7 +20,7 @@ export async function getAllTodos() {
 export async function getActiveTodos() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-todos`, {
     headers: { 'Content-Type': 'application/json' },
-    mode: 'cors',
+    // mode: 'cors',
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -34,7 +34,7 @@ export async function getCompletedTodos() {
     `${process.env.NEXT_PUBLIC_API_URL}/completed-todos`,
     {
       headers: { 'Content-Type': 'application/json' },
-      mode: 'cors',
+      // mode: 'cors',
     }
   );
   if (!res.ok) {
@@ -47,7 +47,7 @@ export async function getCompletedTodos() {
 export async function getActiveCount() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-count`, {
     headers: { 'Content-Type': 'application/json' },
-    mode: 'cors',
+    // mode: 'cors',
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -60,7 +60,7 @@ export async function addTodoApi(todo: todoType) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-todo`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    mode: 'cors',
+    // mode: 'cors',
     body: JSON.stringify({
       isComplete: todo.isComplete,
       title: todo.title,
@@ -77,7 +77,7 @@ export async function updateTodo(todo: todoType) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/update`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    mode: 'cors',
+    // mode: 'cors',
     body: JSON.stringify({
       isComplete: !todo.isComplete,
       productId: todo._id,
@@ -95,7 +95,7 @@ export async function deleteTodoById(productId: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete-todo`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    mode: 'cors',
+    // mode: 'cors',
     body: JSON.stringify({
       productId: productId,
     }),
@@ -113,7 +113,7 @@ export async function clearCompleted() {
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      mode: 'cors',
+      // mode: 'cors',
     }
   );
 
