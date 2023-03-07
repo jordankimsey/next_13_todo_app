@@ -1,21 +1,18 @@
-'use client'
+'use client';
 import { todoType } from '@/utils/apiCalls';
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react';
 import NoTodos from './NoTodos';
 import useTodo from './TodoContext';
 import TodoItem from './TodoItem';
 
-const TodoList = (
-    // {todos}: {todos: todoType[]}
-    ) => {
-      const { todoList, getTodos } = useTodo();
-   
-    //   loadTodos(todos)
-    useEffect(() => {
-        console.log('Getting todos')
-        getTodos()
-    }, [])
-      
+const TodoList = () => {
+  const { todoList, getTodos } = useTodo();
+
+  useEffect(() => {
+    console.log('Getting todos');
+    getTodos();
+  }, []);
+
   return (
     <>
       {todoList.length > 0 ? (
@@ -29,6 +26,6 @@ const TodoList = (
       )}
     </>
   );
-}
+};
 
-export default TodoList
+export default TodoList;

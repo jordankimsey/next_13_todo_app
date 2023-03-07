@@ -53,7 +53,6 @@ export const TodoProvider = ({ children }: Props) => {
     const updatedCount = await getActiveCount();
     const updated = await getAllTodos();
     const updatedReversed = updated?.reverse();
-    console.log('Todo Deleted', deleted);
     dispatch({
       type: actions.REMOVE_TODO_ITEM,
       payload: {
@@ -66,7 +65,6 @@ export const TodoProvider = ({ children }: Props) => {
   async function fetchActiveTodos() {
     const activeTodos = await getActiveTodos();
     const reverseActive = activeTodos?.reverse();
-    console.log('Active TODOS****', activeTodos);
     dispatch({
       type: actions.TOGGLE_ACTIVE,
       payload: {
@@ -87,16 +85,12 @@ export const TodoProvider = ({ children }: Props) => {
   }
 
   async function addNewTodo(todo: any) {
-    console.log(todo, '*****************');
     const newTodo = await addTodoApi(todo);
     const updated = getTodos();
-    // const updatedCount = await getActiveCount();
-    console.log('Todo Added', newTodo);
     dispatch({
       type: actions.ADD_TODO_ITEM,
       payload: {
         todos: updated,
-        //activeCount: updatedCount.activeCount,
       },
     });
   }
@@ -104,7 +98,6 @@ export const TodoProvider = ({ children }: Props) => {
   async function deleteCompleted() {
     const deleteAllCompleted = await clearCompleted();
     const updated = getTodos();
-    console.log(deleteAllCompleted, '*********************');
     dispatch({
       type: actions.CLEAR_COMPLETED,
       payload: {
