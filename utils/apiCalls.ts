@@ -6,27 +6,31 @@ export interface todoType {
 
 //? Get API Calls
 export async function getAllTodos() {
-  const res = await fetch(`https://todo-app-backend-jordankimsey.vercel.app/`, {
-    headers: { 'Content-Type': 'application/json' },
-    mode: 'no-cors',
-  });
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`, {
+      headers: { 'Content-Type': 'application/json' },
+     
+    });
+console.log(res)
+    const todos: todoType[] = await res.json();
+    console.log(todos)
+    return todos;
+  } catch (err) {
+    console.log('Failed to get all todos', err);
   }
-  const todos: todoType[] = await res.json();
-  return todos;
 }
 
 export async function getActiveTodos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-todos`, {
-    headers: { 'Content-Type': 'application/json' },
-    // mode: 'cors',
-  });
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/active-todos`, {
+      headers: { 'Content-Type': 'application/json' },
+      // mode: 'no-cors',
+    });
+    const todos: todoType[] = await res.json();
+    return todos;
+  } catch (err) {
+    console.log('Failed to get active todos', err);
   }
-  const todos: todoType[] = await res.json();
-  return todos;
 }
 
 export async function getCompletedTodos() {
