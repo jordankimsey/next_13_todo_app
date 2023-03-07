@@ -6,7 +6,7 @@ export interface todoType {
 
 //? Get API Calls
 export async function getAllTodos() {
-  const res = await fetch(`${process.env.API_URL}/`, {
+  const res = await fetch(`https://todo-app-backend-jordankimsey.vercel.app/`, {
     headers: { 'Content-Type': 'application/json' },
     // mode: 'no-cors',
   });
