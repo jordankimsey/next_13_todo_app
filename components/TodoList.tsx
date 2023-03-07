@@ -9,7 +9,6 @@ const TodoList = () => {
   const { todoList, getTodos } = useTodo();
 
   useEffect(() => {
-    console.log('Getting todos');
     getTodos();
   }, []);
 

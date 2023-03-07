@@ -26,10 +26,10 @@ const TodoItem = ({ todo }: { todo: todoType }) => {
   }
 
   async function handleDelete(todo: todoType) {
-    console.log('Deleting...', todo._id);
+    
     const id = todo._id
    const deleteT = await deleteTodo(id);
-   console.log('delete', deleteT)
+   
    
   }
 
