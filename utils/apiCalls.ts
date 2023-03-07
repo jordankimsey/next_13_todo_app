@@ -8,7 +8,7 @@ export interface todoType {
 export async function getAllTodos() {
   const res = await fetch(`https://todo-app-backend-jordankimsey.vercel.app/`, {
     headers: { 'Content-Type': 'application/json' },
-    // mode: 'no-cors',
+    mode: 'no-cors',
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
