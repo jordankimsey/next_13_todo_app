@@ -1,16 +1,17 @@
-'use client'
-import React from 'react'
-import useTodo from './TodoContext';
+'use client';
+import React from 'react';
+import useTodo from '@/components/TodoContext';
 
 const ActiveCount = () => {
-      const { activeCount } = useTodo();
+  const { activeCount } = useTodo();
   return (
     <div>
       <p className=''>
-        {activeCount} Items Left
+        {activeCount}
+        Items Left
       </p>
     </div>
   );
-}
+};
 
-export default ActiveCount
+export default ActiveCount;

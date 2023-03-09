@@ -1,13 +1,20 @@
+import { TodoProvider } from '@/components/TodoContext';
 import { render, screen } from '@testing-library/react';
-import ActiveCount from '@/components/ActiveCount';
 import '@testing-library/jest-dom';
+import ActiveCount from '@/components/ActiveCount';
+import { stateType } from '@/components/todoReducer';
 
-describe('Active Count component', () => {
-  it('renders text', () => {
-    render(<ActiveCount />);
+function renderActiveCount() {
+  return render(
+    <TodoProvider>
+      <ActiveCount />
+    </TodoProvider>
+  );
+}
 
-    const text = screen.getByText(/Items Left/i);
-    
-    expect(text).toBeInTheDocument();
+describe('Render active count', () => {
+  it('renders active count component', () => {
+    renderActiveCount();
+    expect(screen.getByText(/Items Left/i)).toBeInTheDocument();
   });
 });

@@ -9,23 +9,19 @@ import {
   getActiveTodos,
   getCompletedTodos,
   clearCompleted,
-} from '@/utils/apiCalls';
+} from '../utils/apiCalls';
 import { createContext, ReactNode, useContext, useReducer } from 'react';
 import todoReducer, { actions, initialState, stateType } from './todoReducer';
 
-type Props = {
-  children: ReactNode;
-};
+export const TodoContext = createContext(initialState);
 
-const TodoContext = createContext(initialState);
-
-export const TodoProvider = ({ children }: Props) => {
+export const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
   async function getTodos() {
     const todos = await getAllTodos();
     const reverseOrder = todos?.reverse();
-    const activeCount = await getActiveCount();
+    const activeCount: { activeCount: number } = await getActiveCount();
     dispatch({
       type: actions.LOAD_TODOS,
       payload: {
@@ -106,7 +102,20 @@ export const TodoProvider = ({ children }: Props) => {
     });
   }
 
-  const value = {
+  type ProviderContext = {
+    todoList: todoType[];
+    activeCount: number;
+    darkMode: boolean;
+    addNewTodo: (todo: todoType) => Promise<void>;
+    toggleCompleted: (todo: todoType) => Promise<void>;
+    getTodos: () => Promise<void>;
+    deleteTodo: (todoId: string) => Promise<void>;
+    fetchActiveTodos: () => Promise<void>;
+    fetchCompletedTodos: () => Promise<void>;
+    deleteCompleted: () => Promise<void>;
+  };
+
+  const value: ProviderContext = {
     todoList: state.todoList,
     activeCount: state.activeCount,
     darkMode: state.darkMode,
