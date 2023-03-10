@@ -6,10 +6,7 @@ const ActiveCount = () => {
   const { activeCount } = useTodo();
   return (
     <div>
-      <p className=''>
-        {activeCount}
-        Items Left
-      </p>
+      <p className=''>{activeCount} Items Left</p>
     </div>
   );
 };
